@@ -1,46 +1,120 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+```
+# Query Builder Library
 
-## Available Scripts
+This is a React-based Query Builder Library that allows users to create complex queries using a user-friendly interface. It exposes an API to get the query output in two formats: a string representation and a Rule object.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Add filters and groups to build complex queries.
+- Support for different conditions and fields.
+- Get query output as a string or a Rule object.
+- Clear the query to start over.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Installation
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+To get started, clone the repository and install the dependencies:
 
-### `npm test`
+```bash
+git clone https://github.com/your-username/query-builder.git
+cd query-builder
+npm install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Running the Development Server
 
-### `npm run build`
+To run the development server, use the following command:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+You can view the application in your browser at `http://localhost:3000`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Building for Production
 
-### `npm run eject`
+To create a production build, use the following command:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+npm run build
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Usage
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### QueryBuilder Component
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The `QueryBuilder` component provides the main functionality of the query builder. It allows users to add filters and groups, and build complex queries.
 
-## Learn More
+### QueryBuilderUI Component
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The `QueryBuilderUI` component is a higher-level component that uses the `QueryBuilder` component and provides a user interface for building queries.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Example
+
+```typescript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import QueryBuilderUI from './components/QueryBuilderUI';
+
+ReactDOM.render(<QueryBuilderUI />, document.getElementById('root'));
+```
+
+### QueryBuilder API
+
+The `QueryBuilder` class provides methods to add conditions and get the query output in different formats.
+
+#### Methods
+
+- `addCondition(condition: Condition, logicOperator: "AND" | "OR")`: Adds a new condition to the query.
+- `getQueryString(): string`: Returns the query as a string.
+- `getQueryObject(): Rule[]`: Returns the query as a Rule object.
+- `clear()`: Clears all conditions from the query.
+
+### Example Usage
+
+```typescript
+import QueryBuilder, { ConditionType } from './queryBuilder';
+
+const queryBuilder = new QueryBuilder();
+
+queryBuilder.addCondition(
+  { field: 'Language', operator: 'equals', value: 'Telugu' },
+  'AND'
+);
+queryBuilder.addCondition(
+  { field: 'Theme', operator: 'equals', value: 'sex' },
+  'OR'
+);
+
+const queryString = queryBuilder.getQueryString();
+const queryObject = queryBuilder.getQueryObject();
+
+console.log(queryString); // Outputs: (Language equals Telugu AND Theme equals sex)
+console.log(queryObject); // Outputs: [{ field: 'Language', operator: 'equals', value: 'Telugu' }, { field: 'Theme', operator: 'equals', value: 'sex' }]
+```
+
+### Clearing the Query
+
+The `QueryBuilderUI` component provides a "Clear Query" button that allows users to reset the query builder to its initial state.
+
+### Example
+
+```typescript
+const handleClearQuery = () => {
+  setGroups([{ logicOperator: "AND", filters: [{ field: "", operator: "equals", value: "" }] }]);
+  setQuery("");
+  setRules([]);
+  queryBuilder.clear();
+};
+```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a pull request or open an issue if you have any suggestions or improvements.
+
+## License
+
+This project is licensed under the MIT License.
+```
+
+This `README.md` provides clear and comprehensive instructions and examples for using the Query Builder Library, including features, installation, running the development server, building for production, usage examples, and how to clear the query.
