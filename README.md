@@ -16,7 +16,7 @@ This is a React-based Query Builder Library that allows users to create complex 
 To get started, clone the repository and install the dependencies:
 
 ```bash
-git clone https://github.com/your-username/query-builder.git
+git clone https://github.com/shivamsinghindia/query-builder.git
 cd query-builder
 npm install
 ```
@@ -89,8 +89,8 @@ queryBuilder.addCondition(
 const queryString = queryBuilder.getQueryString();
 const queryObject = queryBuilder.getQueryObject();
 
-console.log(queryString); // Outputs: (Language equals Telugu AND Theme equals sex)
-console.log(queryObject); // Outputs: [{ field: 'Language', operator: 'equals', value: 'Telugu' }, { field: 'Theme', operator: 'equals', value: 'sex' }]
+console.log(queryString); 
+console.log(queryObject); 
 ```
 
 ### Clearing the Query
@@ -107,14 +107,3 @@ const handleClearQuery = () => {
   queryBuilder.clear();
 };
 ```
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a pull request or open an issue if you have any suggestions or improvements.
-
-## License
-
-This project is licensed under the MIT License.
-```
-
-This `README.md` provides clear and comprehensive instructions and examples for using the Query Builder Library, including features, installation, running the development server, building for production, usage examples, and how to clear the query.

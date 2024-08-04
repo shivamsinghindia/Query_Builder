@@ -48,7 +48,7 @@ const QueryBuilderUI: React.FC = () => {
   };
 
   const handleAddCondition = () => {
-    queryBuilder.clear(); // Ensure to clear previous conditions
+    queryBuilder.clear(); 
     groups.forEach(group => {
       group.filters.forEach(filter => {
         queryBuilder.addCondition({ field: filter.field, operator: filter.operator, value: filter.value }, group.logicOperator);
